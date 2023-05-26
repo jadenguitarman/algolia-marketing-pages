@@ -1,4 +1,4 @@
-#componentContainer {
+#integration-component-container {
 	display: grid;
 	width: 100%;
 	grid-template-areas: "top"
@@ -9,7 +9,7 @@
 }
 
 @media (min-width: 800px) {
-	#componentContainer {
+	#integration-component-container {
 		grid-template-areas: "top       top"
 							 "search search"
 							 "left    right";
@@ -18,7 +18,7 @@
 	}
 }
 
-#initial {
+#integration-initial {
 	grid-area: top;
 	width: 100%;
 	display: flex;
@@ -28,35 +28,35 @@
 	flex-direction: column;
 }
 
-#searchbox {
+#integration-searchbox {
 	grid-area: search;
 	width: 100%;
 }
 
-#left-column {
+#integration-left-column {
 	grid-area: left;
 	width: 100%;
 }
 
-#results {
+#integration-results {
 	grid-area: right;
 	width: 100%;
 }
 
-.toggle {
+.integration-toggle {
 	display: flex;
 	align-items: center;
 	justify-content: space-around;
 	width: 50%;
 }
 
-.toggle > input {
+.integration-toggle > input {
 	height: 0;
 	width: 0;
 	visibility: hidden;
 }
 
-.toggle > div {
+.integration-toggle > div {
 	cursor: pointer;
 	text-indent: -9999px;
 	width: 20vw;
@@ -67,7 +67,7 @@
 	position: relative;
 }
 
-.toggle > div:after {
+.integration-toggle > div:after {
 	content: '';
 	position: absolute;
 	top: 5px;
@@ -79,14 +79,18 @@
 	transition: 0.3s;
 }
 
-.toggle > input:checked ~ div {
+.integration-toggle > input:checked ~ div {
 	background: #bbb;
 }
 
-.toggle > input:checked ~ div:after {
-	left: calc(10vw + 5px);
+.integration-toggle > input:checked ~ div:after {
+	left: calc(10vw - 5px);
 }
 
-.toggle > div:active:after {
-	width: 12vw;
+.integration-toggle > div:active:after {
+	width: 15vw;
+}
+
+.integration-toggle > input:checked ~ div:active:after {
+	left: calc(5vw - 5px);
 }

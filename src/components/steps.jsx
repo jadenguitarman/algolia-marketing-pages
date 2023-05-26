@@ -3,7 +3,7 @@ import 'instantsearch.css/themes/satellite.css';
 import "../styles/steps.css";
 
 const Steps = ({ stepArray }) => (
-	<section id="componentContainer">
+	<section id="steps-component-container">
 		{stepArray.map((step, i) => (
 			<div key={`step-${i}`} class="step-container">
 				<div class={!!step.imageURL ? "step has-image" : "step"}>

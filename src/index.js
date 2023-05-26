@@ -18,40 +18,51 @@ const searchCredentials = [
 	}
 ];
 
+const ShowSteps = () => (
+	<Steps stepArray={[
+		{
+			heading: "This is a heading.",
+			content: "This is paragraph content.",
+			imageURL: "https://picsum.photos/200"
+		},
+		{
+			heading: "This is a second heading.",
+			content: "This is more paragraph content.",
+			imageURL: "https://picsum.photos/200"
+		},
+		{
+			heading: "This is a third heading.",
+			content: "This is even more paragraph content.",
+			//imageURL: "https://picsum.photos/200"
+		}
+	]} />
+);
+
+const ShowIntegration = () => (
+	<Integration
+		searchIndexes={searchCredentials.map(creds => ({
+			creds,
+			client: algoliasearch(
+				creds.appID,
+				creds.apiKey
+			)
+		}))}
+		firstSubcomponentArray={[
+			["heading", "Hello yall"],
+			["toggle", "Use events", "Ignore events"]
+		]}
+		secondSubcomponentArray={[
+			["refinementList", {
+				attribute: "artist"
+			}]
+		]}
+	/>
+);
+
 const App = () => (
 	<div className="App">
-		<Steps stepArray={[
-			{
-				heading: "This is a heading.",
-				content: "This is paragraph content.",
-				imageURL: "https://picsum.photos/200"
-			},
-			{
-				heading: "This is a second heading.",
-				content: "This is more paragraph content.",
-				imageURL: "https://picsum.photos/200"
-			},
-			{
-				heading: "This is a third heading.",
-				content: "This is even more paragraph content.",
-				//imageURL: "https://picsum.photos/200"
-			}
-		]} />
-
-		<Integration
-			searchIndexes={searchCredentials.map(creds => ({
-				creds,
-				client: algoliasearch(
-					creds.appID,
-					creds.apiKey
-				)
-			}))}
-			firstSubcomponentArray={[
-				["heading", "Hello yall"],
-				["toggle", "Use events", "Ignore events"]
-			]}
-			secondSubcomponentArray={[]}
-		/>
+		{ /* <ShowSteps /> */ }
+		<ShowIntegration />
 	</div>
 );
 

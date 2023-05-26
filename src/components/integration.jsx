@@ -17,7 +17,7 @@ const InitialSection = ({
 		"heading": heading => ( <h1 key={uniqueID(heading, "heading")}>{ heading } </h1> ),
 		"text": text => ( <h1 key={uniqueID(text, "text")}>{ text } </h1> ),
 		"toggle": (label1, label2) => (
-			<label key="toggle" class="toggle">
+			<label key="toggle" className="integration-toggle">
 				<input type="checkbox" onClick={() => {
 					// toggle indexIndex
 					setIndexIndex(indexIndex ? 0 : 1);
@@ -29,7 +29,7 @@ const InitialSection = ({
 		)
 	};
 	return (
-		<section id="initial">
+		<section id="integration-initial">
 			{ subcomponentArray.map(
 				([name, ...props]) =>
 					subcomponents[name](...props)
@@ -37,6 +37,27 @@ const InitialSection = ({
 		</section>
 	);
 };
+
+const LeftSection = ({ subcomponentArray }) => {
+	const subcomponents = {
+		"heading": heading => ( <h1 key={uniqueID(heading, "heading")}>{ heading } </h1> ),
+		"text": text => ( <h1 key={uniqueID(text, "text")}>{ text } </h1> ),
+		"refinementList": componentProps => (
+			<RefinementList
+				{...componentProps}
+				key={uniqueID(JSON.stringify(componentProps), "refinementList")}
+			/>
+		)
+	};
+	return (
+		<>
+			{ subcomponentArray.map(
+				([name, ...props]) =>
+					subcomponents[name](...props)
+			) }
+		</>
+	);
+}
 
 const Integration = ({
 	searchIndexes,
@@ -46,7 +67,7 @@ const Integration = ({
 	const [indexIndex, setIndexIndex] = useState(0);
 	console.log(searchIndexes)
 	return (
-		<main id="componentContainer">
+		<main id="integration-component-container">
 			<InitialSection
 				subcomponentArray={firstSubcomponentArray}
 				indexIndex={indexIndex}
@@ -63,15 +84,17 @@ const Integration = ({
 						indexIndex == thisIndex
 							? (
 								<>
-									<section id="searchbox">
+									<section id="integration-searchbox">
 										<SearchBox />
 									</section>
 
-									<section id="left-column">
-										{ secondSubcomponentArray }
+									<section id="integration-left-column">
+										<LeftSection
+											subcomponentArray={secondSubcomponentArray}
+										/>
 									</section>
 
-									<section id="results">
+									<section id="integration-results">
 										<Hits hitComponent={({ hit }) => (
 											<p>{ hit.title } by { hit.artist }</p>
 										)} />
