@@ -1,0 +1,92 @@
+#componentContainer {
+	display: grid;
+	width: 100%;
+	grid-template-areas: "top"
+						 "search"
+						 "right"
+						 "left";
+	grid-row-gap: 2vh;
+}
+
+@media (min-width: 800px) {
+	#componentContainer {
+		grid-template-areas: "top       top"
+							 "search search"
+							 "left    right";
+		grid-template-columns: 30% 65%;
+ 		grid-column-gap: 5%;
+	}
+}
+
+#initial {
+	grid-area: top;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	flex-direction: column;
+}
+
+#searchbox {
+	grid-area: search;
+	width: 100%;
+}
+
+#left-column {
+	grid-area: left;
+	width: 100%;
+}
+
+#results {
+	grid-area: right;
+	width: 100%;
+}
+
+.toggle {
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+	width: 50%;
+}
+
+.toggle > input {
+	height: 0;
+	width: 0;
+	visibility: hidden;
+}
+
+.toggle > div {
+	cursor: pointer;
+	text-indent: -9999px;
+	width: 20vw;
+	height: 10vw;
+	background: grey;
+	display: block;
+	border-radius: 1000vh;
+	position: relative;
+}
+
+.toggle > div:after {
+	content: '';
+	position: absolute;
+	top: 5px;
+	left: 5px;
+	width: calc(10vw - 10px);
+	height: calc(10vw - 10px);
+	background: #fff;
+	border-radius: calc(10vw - 10px);
+	transition: 0.3s;
+}
+
+.toggle > input:checked ~ div {
+	background: #bbb;
+}
+
+.toggle > input:checked ~ div:after {
+	left: calc(10vw + 5px);
+}
+
+.toggle > div:active:after {
+	width: 12vw;
+}

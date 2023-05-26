@@ -1,0 +1,91 @@
+#componentContainer {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	padding: 2vw;
+	box-sizing: border-box;
+}
+
+.step-container {
+	width: 100%;
+	display: grid;
+	grid-template-columns: 65% 35%;
+	grid-template-areas: "step arrow";
+	box-sizing: border-box;
+}
+
+.step-container:nth-child(2n) {
+	grid-template-columns: 35% 65%;
+	grid-template-areas: "arrow step";
+}
+
+.step-arrow-container {
+	width: 100%;
+	grid-area: arrow;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.step-arrow-container > svg {
+	width: 30%;
+	transform: translate(0%, 30%);
+}
+
+.step-container:nth-child(2n) > .step-arrow-container > svg {
+	transform: scale(-1, 1) translate(0%, 30%);
+}
+
+.step-container:last-child > .step-arrow-container {
+	display: none;
+}
+
+.step {
+	box-sizing: border-box;
+	grid-area: step;
+	width: 100%;
+	display: grid;
+	grid-template-areas: "heading heading"
+						 "content content";
+	grid-template-columns: 80% 20%;
+	border: 2px solid #ccc;
+	border-radius: 3px;
+	padding: 1vw;
+}
+
+.step.has-image {
+	grid-template-areas: "heading image"
+						 "content image";
+}
+
+.step-container:nth-child(2n) .step.has-image {
+	grid-template-areas: "image heading"
+						 "image content";
+	grid-template-columns: 20% 80%;
+}
+
+.step > .step-heading {
+	grid-area: heading;
+	padding: 2vw;
+	font-size: 3vh;
+	font-weight: bold;
+}
+
+.step > .step-content {
+	grid-area: content;
+	padding: 2vw;
+	font-size: 2vh;
+}
+
+.step > .step-image-container {
+	grid-area: image;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 5%;
+}
+
+.step > .step-image-container > img {
+	border-radius: 50%;
+	width: 100%;
+}
